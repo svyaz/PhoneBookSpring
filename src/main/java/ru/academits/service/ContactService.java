@@ -77,4 +77,8 @@ public class ContactService {
     public List<Contact> getAllContacts() {
         return contactDao.getAllContacts();
     }
+
+    public List<Contact> getFilteredContacts(String filterString) {
+        return contactDao.getFilteredContacts(filterString);
+    }
 }

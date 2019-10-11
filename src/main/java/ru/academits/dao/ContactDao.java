@@ -37,6 +37,23 @@ public class ContactDao {
         return contactList;
     }
 
+    /**
+     * Get filtered contacts list where firstName or lastName or phone contains
+     * specified string.
+     *
+     * @param filterString - string to filter with.
+     * @return filtered contacts list.
+     */
+    public List<Contact> getFilteredContacts(String filterString) {
+        String lowerCaseFilterString = filterString.toLowerCase();
+        return contactList
+                .stream()
+                .filter(c -> (c.getFirstName().toLowerCase().contains(lowerCaseFilterString) ||
+                        c.getLastName().toLowerCase().contains(lowerCaseFilterString) ||
+                        c.getPhone().toLowerCase().contains(lowerCaseFilterString)))
+                .collect(Collectors.toList());
+    }
+
     public void add(Contact contact) {
         contact.setId(getNewId());
         contactList.add(contact);

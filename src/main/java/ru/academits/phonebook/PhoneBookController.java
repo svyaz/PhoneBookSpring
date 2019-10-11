@@ -30,6 +30,13 @@ public class PhoneBookController {
         return contactService.getAllContacts();
     }
 
+    @RequestMapping(value = "/get/filter", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Contact> getFilteredContacts(@RequestParam String s) {
+        // s - filter string
+        return contactService.getFilteredContacts(s);
+    }
+
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public ContactValidation addContact(@RequestBody Contact contact) {
