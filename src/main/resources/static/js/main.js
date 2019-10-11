@@ -58309,13 +58309,13 @@ var ERR_MSG_COMMUNICATION_ERROR = "Сбой соединения с сервер
 
       this.isIndicatorVisible = true;
       service.addContact(item).done(function (response) {
-        var jsonResp = response;
+        //let jsonResp = response;
         _this.errorStatus = {
-          status: !jsonResp.valid,
-          message: jsonResp.error || ''
+          status: !response.valid,
+          message: response.error || ''
         };
 
-        if (jsonResp.valid) {
+        if (response.valid) {
           _this.loadContacts(_this.searchString);
         }
       }).fail(function () {
@@ -58348,13 +58348,13 @@ var ERR_MSG_COMMUNICATION_ERROR = "Сбой соединения с сервер
           });
           _this2.isIndicatorVisible = true;
           service.deleteContact(listToDelete).done(function (response) {
-            var jsonResp = JSON.parse(response);
+            //let jsonResp = JSON.parse(response);
             _this2.errorStatus = {
-              status: jsonResp.deleteNumber === 0,
-              message: jsonResp.error || ''
+              status: response.deleteNumber === 0,
+              message: response.error || ''
             };
 
-            if (jsonResp.deleteNumber !== 0) {
+            if (response.deleteNumber !== 0) {
               _this2.loadContacts(_this2.searchString);
             }
           }).fail(function () {

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.academits.dao.ContactDao;
 import ru.academits.model.Contact;
 import ru.academits.model.ContactValidation;
+import ru.academits.model.ContactsDeletion;
 
 import java.util.List;
 
@@ -60,6 +61,17 @@ public class ContactService {
             contactDao.add(contact);
         }
         return contactValidation;
+    }
+
+    public ContactsDeletion deleteContacts(List<Integer> idsList) {
+        ContactsDeletion contactsDeletion = new ContactsDeletion();
+        int deletedContactsNumber = contactDao.deleteContacts(idsList);
+        contactsDeletion.setDeleteNumber(deletedContactsNumber);
+
+        if (deletedContactsNumber == 0) {
+            contactsDeletion.setError("Ни одного контакта не удалено.");
+        }
+        return contactsDeletion;
     }
 
     public List<Contact> getAllContacts() {
