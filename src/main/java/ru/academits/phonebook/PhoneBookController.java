@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 @Controller
-@RequestMapping("/phoneBook/rpc/api/v1")
+@RequestMapping("/phonebook")
 public class PhoneBookController {
     private static final Logger logger = LoggerFactory.getLogger(PhoneBookController.class);
 
@@ -21,7 +21,7 @@ public class PhoneBookController {
         this.contactService = contactService;
     }
 
-    @RequestMapping(value = "getAllContacts", method = RequestMethod.GET)
+    @RequestMapping(value = "/get/all", method = RequestMethod.GET)
     @ResponseBody
     public List<Contact> getAllContacts() {
         logger.info("called method getAllContacts");

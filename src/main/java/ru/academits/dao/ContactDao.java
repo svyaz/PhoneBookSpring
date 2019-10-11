@@ -13,12 +13,19 @@ public class ContactDao {
     private AtomicInteger idSequence = new AtomicInteger(0);
 
     public ContactDao() {
-        Contact contact = new Contact();
-        contact.setId(getNewId());
-        contact.setFirstName("Иван");
-        contact.setLastName("Иванов");
-        contact.setPhone("9123456789");
-        contactList.add(contact);
+        Contact contact1 = new Contact();
+        contact1.setId(getNewId());
+        contact1.setFirstName("Иван");
+        contact1.setLastName("Иванов");
+        contact1.setPhone("9123456789");
+        contactList.add(contact1);
+
+        Contact contact2 = new Contact();
+        contact2.setId(getNewId());
+        contact2.setFirstName("Василий");
+        contact2.setLastName("Чапаев");
+        contact2.setPhone("9131234567");
+        contactList.add(contact2);
     }
 
     private int getNewId() {
