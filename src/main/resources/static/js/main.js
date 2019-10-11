@@ -57976,14 +57976,14 @@ var ERR_MSG_PHONE_SYMBOLS_NOT_MATCH = "В номере телефона допу
         notFilled.push(this.phoneNumberText);
       }
 
-      if (!/^[\d \-+()]{1,20}$/.test(this.newPhoneNumber)) {
-        this.errorMessage = ERR_MSG_PHONE_SYMBOLS_NOT_MATCH;
-        return;
-      }
-
       if (notFilled.length > 0) {
         this.isHighlighted = true;
         this.errorMessage = ERR_MSG_EMPTY_ITEMS + notFilled.join(", ");
+        return;
+      }
+
+      if (!/^[\d \-+()]{1,20}$/.test(this.newPhoneNumber)) {
+        this.errorMessage = ERR_MSG_PHONE_SYMBOLS_NOT_MATCH;
         return;
       }
 
@@ -58309,7 +58309,7 @@ var ERR_MSG_COMMUNICATION_ERROR = "Сбой соединения с сервер
 
       this.isIndicatorVisible = true;
       service.addContact(item).done(function (response) {
-        var jsonResp = JSON.parse(response);
+        var jsonResp = response;
         _this.errorStatus = {
           status: !jsonResp.valid,
           message: jsonResp.error || ''

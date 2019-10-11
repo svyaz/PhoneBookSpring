@@ -28,7 +28,7 @@ public class PhoneBookController {
         return contactService.getAllContacts();
     }
 
-    @RequestMapping(value = "addContact", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public ContactValidation addContact(@RequestBody Contact contact) {
         return contactService.addContact(contact);
