@@ -1,5 +1,7 @@
 package ru.academits.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import ru.academits.dao.ContactDao;
 import ru.academits.model.Contact;
@@ -10,6 +12,7 @@ import java.util.List;
 
 @Service
 public class ContactService {
+    private static final Logger logger = LoggerFactory.getLogger(ContactService.class);
     private final ContactDao contactDao;
 
     public ContactService(ContactDao contactDao) {
@@ -32,26 +35,32 @@ public class ContactService {
         if (contact.getFirstName().isEmpty()) {
             contactValidation.setValid(false);
             contactValidation.setError("Поле Имя должно быть заполнено.");
+            logger.info("ContactService: validateContact: firstName empty.");
             return contactValidation;
         }
 
         if (contact.getLastName().isEmpty()) {
             contactValidation.setValid(false);
             contactValidation.setError("Поле Фамилия должно быть заполнено.");
+            logger.info("ContactService: validateContact: lastName empty.");
             return contactValidation;
         }
 
         if (contact.getPhone().isEmpty()) {
             contactValidation.setValid(false);
             contactValidation.setError("Поле Телефон должно быть заполнено.");
+            logger.info("ContactService: validateContact: phone empty.");
             return contactValidation;
         }
 
         if (isExistContactWithPhone(contact.getPhone())) {
             contactValidation.setValid(false);
             contactValidation.setError("Номер телефона не должен дублировать другие номера в телефонной книге.");
+            logger.info("ContactService: validateContact: this phone already exists: " + contact.getPhone());
             return contactValidation;
         }
+
+        logger.info("ContactService: validateContact: contact validation successful.");
         return contactValidation;
     }
 
