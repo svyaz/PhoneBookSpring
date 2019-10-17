@@ -9,11 +9,10 @@ import ru.academits.service.ContactService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collections;
 import java.util.List;
 
 @Controller
-@RequestMapping("/phonebook")
+@RequestMapping(value = "/phonebook")
 public class PhoneBookController {
     private static final Logger logger = LoggerFactory.getLogger(PhoneBookController.class);
 
@@ -26,7 +25,7 @@ public class PhoneBookController {
     @RequestMapping(value = "/get/all", method = RequestMethod.GET)
     @ResponseBody
     public List<Contact> getAllContacts() {
-        logger.info("called method getAllContacts");
+        logger.info("Called method getAllContacts");
         return contactService.getAllContacts();
     }
 
@@ -34,20 +33,21 @@ public class PhoneBookController {
     @ResponseBody
     public List<Contact> getFilteredContacts(@RequestParam String s) {
         // s - filter string
+        logger.info("Called method getFilteredContacts(" + s + ")");
         return contactService.getFilteredContacts(s);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public ContactValidation addContact(@RequestBody Contact contact) {
+        logger.info("Called method addContact(" + contact + ")");
         return contactService.addContact(contact);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public ContactsDeletion deleteContacts(@RequestBody List<Integer> idsList) {
+        logger.info("Called method deleteContacts(" + idsList + ")");
         return contactService.deleteContacts(idsList);
     }
 }
-
-

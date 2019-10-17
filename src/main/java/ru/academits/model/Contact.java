@@ -46,4 +46,10 @@ public class Contact {
     public void setImportant(boolean important) {
         this.important = important;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Contact{id=%d, firstName='%s', lastName='%s', phone='%s'}",
+                id, firstName, lastName, phone);
+    }
 }
