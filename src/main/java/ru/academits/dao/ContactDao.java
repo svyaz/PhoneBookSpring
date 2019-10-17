@@ -1,5 +1,7 @@
 package ru.academits.dao;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import ru.academits.model.Contact;
 
@@ -10,6 +12,8 @@ import java.util.stream.Collectors;
 
 @Repository
 public class ContactDao {
+    private static final Logger logger = LoggerFactory.getLogger(ContactDao.class);
+
     private List<Contact> contactList = new ArrayList<>();
     private AtomicInteger idSequence = new AtomicInteger(0);
 
@@ -34,6 +38,7 @@ public class ContactDao {
     }
 
     public List<Contact> getAllContacts() {
+        logger.info("getAllContacts.");
         return contactList;
     }
 
@@ -46,6 +51,7 @@ public class ContactDao {
      */
     public List<Contact> getFilteredContacts(String filterString) {
         String lowerCaseFilterString = filterString.toLowerCase();
+        logger.info("getFilteredContacts(" + filterString + ")");
         return contactList
                 .stream()
                 .filter(c -> (c.getFirstName().toLowerCase().contains(lowerCaseFilterString) ||
@@ -56,6 +62,7 @@ public class ContactDao {
 
     public void add(Contact contact) {
         contact.setId(getNewId());
+        logger.info("add(" + contact + ")");
         contactList.add(contact);
     }
 
@@ -71,6 +78,8 @@ public class ContactDao {
         contactList = contactList.stream()
                 .filter(c -> !idsList.contains(c.getId()))
                 .collect(Collectors.toList());
+
+        logger.info("deleteContacts: deleted contacts: " + (sizeBefore - contactList.size()));
         return sizeBefore - contactList.size();
     }
 }

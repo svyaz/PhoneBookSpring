@@ -25,7 +25,7 @@ public class PhoneBookController {
     @RequestMapping(value = "/get/all", method = RequestMethod.GET)
     @ResponseBody
     public List<Contact> getAllContacts() {
-        logger.info("Called method getAllContacts");
+        logger.info("Called getAllContacts");
         return contactService.getAllContacts();
     }
 
@@ -33,21 +33,21 @@ public class PhoneBookController {
     @ResponseBody
     public List<Contact> getFilteredContacts(@RequestParam String s) {
         // s - filter string
-        logger.info("Called method getFilteredContacts(" + s + ")");
+        logger.info("Called getFilteredContacts(" + s + ")");
         return contactService.getFilteredContacts(s);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public ContactValidation addContact(@RequestBody Contact contact) {
-        logger.info("Called method addContact(" + contact + ")");
+        logger.info("Called addContact(" + contact + ")");
         return contactService.addContact(contact);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public ContactsDeletion deleteContacts(@RequestBody List<Integer> idsList) {
-        logger.info("Called method deleteContacts(" + idsList + ")");
+        logger.info("Called deleteContacts(" + idsList + ")");
         return contactService.deleteContacts(idsList);
     }
 }

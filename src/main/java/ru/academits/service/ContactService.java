@@ -35,32 +35,32 @@ public class ContactService {
         if (contact.getFirstName().isEmpty()) {
             contactValidation.setValid(false);
             contactValidation.setError("Поле Имя должно быть заполнено.");
-            logger.info("ContactService: validateContact: firstName empty.");
+            logger.info("Called validateContact: firstName empty.");
             return contactValidation;
         }
 
         if (contact.getLastName().isEmpty()) {
             contactValidation.setValid(false);
             contactValidation.setError("Поле Фамилия должно быть заполнено.");
-            logger.info("ContactService: validateContact: lastName empty.");
+            logger.info("validateContact: lastName empty.");
             return contactValidation;
         }
 
         if (contact.getPhone().isEmpty()) {
             contactValidation.setValid(false);
             contactValidation.setError("Поле Телефон должно быть заполнено.");
-            logger.info("ContactService: validateContact: phone empty.");
+            logger.info("validateContact: phone empty.");
             return contactValidation;
         }
 
         if (isExistContactWithPhone(contact.getPhone())) {
             contactValidation.setValid(false);
             contactValidation.setError("Номер телефона не должен дублировать другие номера в телефонной книге.");
-            logger.info("ContactService: validateContact: this phone already exists: " + contact.getPhone());
+            logger.info("validateContact: this phone already exists: " + contact.getPhone());
             return contactValidation;
         }
 
-        logger.info("ContactService: validateContact: contact validation successful.");
+        logger.info("validateContact: contact validation successful.");
         return contactValidation;
     }
 
