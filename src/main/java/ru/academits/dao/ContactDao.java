@@ -82,4 +82,24 @@ public class ContactDao {
         logger.info("deleteContacts: deleted contacts: " + (sizeBefore - contactList.size()));
         return sizeBefore - contactList.size();
     }
+
+    /**
+     * from list with
+     * Deletes the contact at the specified position in this contactList.
+     *
+     * @param index specified position in the contactList.
+     */
+    public void deleteContact(int index) {
+        Contact deletedContact = contactList.remove(index);
+        logger.info("deleteContact: " + deletedContact.toString());
+    }
+
+    /**
+     * Returns number of contacts in contactList.
+     *
+     * @return Number of contacts in contactList.
+     */
+    public int getContactsCount() {
+        return contactList.size();
+    }
 }
