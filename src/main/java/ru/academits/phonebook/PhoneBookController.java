@@ -6,15 +6,15 @@ import ru.academits.model.Contact;
 import ru.academits.model.ContactValidation;
 import ru.academits.model.ContactsDeletion;
 import ru.academits.service.ContactService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import java.util.List;
 
 @Controller
 @RequestMapping(value = "/phonebook")
 public class PhoneBookController {
-    private static final Logger logger = LoggerFactory.getLogger(PhoneBookController.class);
+    private static final Logger logger = LogManager.getLogger(PhoneBookController.class);
 
     private final ContactService contactService;
 

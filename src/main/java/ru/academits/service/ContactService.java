@@ -1,18 +1,18 @@
 package ru.academits.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import ru.academits.dao.ContactDao;
 import ru.academits.model.Contact;
 import ru.academits.model.ContactValidation;
 import ru.academits.model.ContactsDeletion;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import java.util.List;
 
 @Service
 public class ContactService {
-    private static final Logger logger = LoggerFactory.getLogger(ContactService.class);
+    private static final Logger logger = LogManager.getLogger(ContactService.class);
     private final ContactDao contactDao;
 
     public ContactService(ContactDao contactDao) {
