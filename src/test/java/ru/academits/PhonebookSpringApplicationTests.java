@@ -1,6 +1,5 @@
 package ru.academits;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,8 @@ import ru.academits.phonebook.PhoneBookController;
 
 import java.util.List;
 
+import static org.junit.Assert.*;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PhonebookSpringApplicationTests {
@@ -20,8 +21,8 @@ public class PhonebookSpringApplicationTests {
     @Test
     public void getAllContactsTest() {
         List<Contact> contactList = phoneBookController.getAllContacts();
-        Assert.assertEquals(contactList.size(), 2);
-        Assert.assertEquals(contactList.get(0).getPhone(), "9123456789");
-        Assert.assertEquals(contactList.get(1).getPhone(), "9131234567");
+        assertEquals(contactList.size(), 2);
+        assertEquals(contactList.get(0).getPhone(), "9123456789");
+        assertEquals(contactList.get(1).getPhone(), "9131234567");
     }
 }
