@@ -1,6 +1,5 @@
 package ru.academits.service;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import ru.academits.dao.ContactDao;
 import ru.academits.model.Contact;
@@ -16,7 +15,7 @@ public class ContactServiceTest {
     private ContactService contactService = new ContactService(new ContactDao());
 
     @Test
-    public void getAllContacts() {
+    public void getAllContactsTest() {
         List<Contact> contactList = contactService.getAllContacts();
         assertEquals(contactList.size(), 2);
         assertEquals(contactList.get(0).getPhone(), "9123456789");
@@ -24,14 +23,14 @@ public class ContactServiceTest {
     }
 
     @Test
-    public void getFilteredContacts() {
+    public void getFilteredContactsTest() {
         List<Contact> contactList = contactService.getFilteredContacts("913");
         assertEquals(contactList.size(), 1);
         assertEquals(contactList.get(0).getPhone(), "9131234567");
     }
 
     @Test
-    public void addContact() {
+    public void addContactTest() {
         Contact contact = new Contact();
         contact.setFirstName("Alain");
         contact.setLastName("Prost");
@@ -45,8 +44,15 @@ public class ContactServiceTest {
     }
 
     @Test
-    public void deleteContacts() {
+    public void deleteContactsTest() {
         ContactsDeletion deletion = contactService.deleteContacts(Arrays.asList(2, 1, 4, 10, 1234567890));
         assertEquals(deletion.getDeleteNumber(), 2);
+    }
+
+    @Test
+    public void deleteContactsZeroDeletedTest() {
+        ContactsDeletion deletion = contactService.deleteContacts(Arrays.asList(888, 999, 1010));
+        assertEquals(deletion.getDeleteNumber(), 0);
+        assertEquals(deletion.getError(), "Ни одного контакта не удалено.");
     }
 }
